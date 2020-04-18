@@ -1,0 +1,50 @@
+#spring:
+#  datasource:
+#    primary:
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      jdbc-url: jdbc:mysql://localhost:3306/test1?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+#      password: root
+#      type: com.alibaba.druid.pool.DruidDataSource
+#      username: root
+#    secondary:
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      jdbc-url: jdbc:mysql://localhost:3306/test3?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+#      password: root
+#      type: com.alibaba.druid.pool.DruidDataSource
+#      username: root
+spring:
+  profiles:
+    active: pro
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test1?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: root
+
+  jpa:
+    database: mysql
+    #不加这句则默认为myisam引擎
+    database-platform: org.hibernate.dialect.MySQL55InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        default_schema: root
+        dialect: org.hibernate.dialect.MySQL55Dialect
+        show_sql: true
+        hbm2ddl:
+          auto: update
+
+custom:
+  datasource:
+    names: data2
+    data2:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/test3?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+      username: root
+      password: root
+      validation-query: SELECT 1
+      time-between-eviction-runs-millis: 600000
+      min-evictable-idle-time-millis: 1800000
+      maximum-pool-size: 80
